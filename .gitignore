@@ -1,0 +1,19 @@
+# Ignore Airflow system files and DBs
+airflow/airflow.db*
+airflow/airflow.cfg
+airflow/logs/
+airflow/dag_processor/
+airflow/simple_auth_manager_passwords.json.generated
+
+# Ignore local databases (Privacy & Security)
+market_data.db
+market_data_backup_*.db
+
+# Ignore Python environment and cache
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Ignore system junk
+.DS_Store
