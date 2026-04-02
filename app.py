@@ -7,11 +7,10 @@ import json
 from datetime import datetime
 import numpy as np
 
-DB_PATH = '/home/user/Desktop/SIP/market_data.db'
+DB_PATH = 'SIP/market_data.db' # my directory 
 
-# ============================================================================
-# PAGE CONFIG & CUSTOM STYLING
-# ============================================================================
+
+
 st.set_page_config(
     page_title="Pro SIP Tracker",
     page_icon="📈",
@@ -19,7 +18,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Premium Dark Theme with Neon Accents
+
 custom_css = """
 <style>
 :root {
@@ -268,9 +267,7 @@ hr {
 
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# ============================================================================
-# HELPER FUNCTIONS
-# ============================================================================
+
 def get_nifty_value(nifty_json):
     """Extract NIFTYBEES value from JSON"""
     try:
@@ -395,11 +392,7 @@ def create_price_distribution_chart(df):
     
     return fig
 
-# ============================================================================
-# MAIN APP
-# ============================================================================
 
-# Header with gradient
 col1, col2 = st.columns([3, 1])
 with col1:
     st.markdown("""
@@ -433,7 +426,6 @@ with col2:
 
 st.markdown("---")
 
-# Sidebar Controls
 with st.sidebar:
     st.markdown("""
     <h2 style='text-align: center; margin-bottom: 1.5em; font-size: 1.8em;'>
@@ -488,9 +480,7 @@ try:
         price_change = current_price - prev_price
         price_change_pct = (price_change / prev_price * 100) if prev_price != 0 else 0
 
-        # ====================================================================
-        # SIDEBAR WATCHLIST
-        # ====================================================================
+    
         with st.sidebar:
             st.markdown("---")
             st.markdown("""
@@ -525,9 +515,6 @@ try:
                     </div>
                     """, unsafe_allow_html=True)
 
-        # ====================================================================
-        # KEY METRICS
-        # ====================================================================
         st.markdown("""
         <h2 style='margin-top: 2em; margin-bottom: 1.5em; font-size: 1.5em;'>
             📊 Key Metrics
@@ -564,9 +551,6 @@ try:
                 delta=f"vs Now"
             )
 
-        # ====================================================================
-        # TABBED CONTENT
-        # ====================================================================
         tab1, tab2, tab3 = st.tabs(["📰 Current Briefing", "📊 Price Analysis", "💡 Insights"])
 
         with tab1:
@@ -582,7 +566,7 @@ try:
             
             st.markdown("---")
             
-            # AI Analysis
+
             st.markdown("""
             <div style='
                 background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 0, 110, 0.05));
@@ -655,8 +639,7 @@ try:
                 </div>
                 </div>
                 """, unsafe_allow_html=True)
-            
-            # Price distribution
+         
             st.markdown("---")
             col1, col2 = st.columns(2)
             
@@ -690,7 +673,7 @@ try:
             </h3>
             """, unsafe_allow_html=True)
             
-            # Calculate some insights
+
             recent_trend = "📈 Uptrend" if price_change > 0 else "📉 Downtrend"
             volatility = ((df['chart_price'].std() / df['chart_price'].mean()) * 100)
             volatility_level = "🔴 High" if volatility > 2 else "🟡 Medium" if volatility > 1 else "🟢 Low"
@@ -742,8 +725,7 @@ try:
                 """, unsafe_allow_html=True)
             
             st.markdown("---")
-            
-            # Detailed insights
+         
             st.markdown("""
             <h4 style='margin-bottom: 1em; margin-top: 1.5em;'>Detailed Analysis</h4>
             <div style='
